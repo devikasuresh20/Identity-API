@@ -1112,13 +1112,14 @@ public class IdentityService {
 		// END
 
 		regIdRepo.save(regMap);
+		logger.info("Saved reg Id Mapping " + regMap);
 		if (benMapping.getCreatedDate() == null) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 			String DateToStoreInDataBase = sdf.format(new Date());
 			Timestamp ts = Timestamp.valueOf(DateToStoreInDataBase);
 			benMapping.setCreatedDate(ts);
 		}
-
+		logger.info("Saving ben Mapping " + benMapping);
 		benMapping = mappingRepo.save(benMapping);
 		// Update van serial no for data sync
 		int i6 = mappingRepo.updateVanSerialNo(benMapping.getBenMapId());
